@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { TodoForm } from "@/components/ui/Todo-form";
+
 import { connectDB } from "@/lib/db";
 import { CheckCircle, Divide } from "lucide-react";
 
@@ -22,7 +24,7 @@ export default async function Home() {
           </p>
         </header>
         <section className="bg-white dark:bg-zinc-900 border border-slate-200 dark:bg-zinc-800 rounded-2xl p-6 shadow-sm">
-          {/* <TodoFrom /> */}
+          <TodoForm />
         </section>
         <footer className="pt-8 text-center border-t border-slate-200 dark:bg-zinc-800">
           <p className="text-sm text-slate-400 dark:bg-zinc-500">
