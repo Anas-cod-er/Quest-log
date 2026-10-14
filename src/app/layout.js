@@ -1,10 +1,12 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import QueryClientProviderClient from "../../provider/query-client-provider";
-import {Toaster} from "sonner"
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { Toaster } from "sonner";
+
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -21,13 +23,24 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <QueryClientProviderClient>{children}
-        <Toaster position ="top-center" richColors />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+              const savedTheme = localStorage.getItem("theme");
+              const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+              document.documentElement.classList.toggle("dark", savedTheme === "dark" || (!savedTheme && prefersDark));
+            })();`,
+          }}
+        />
+        <QueryClientProviderClient>
+          {children}
+          <Toaster position="top-center" richColors />
         </QueryClientProviderClient>
-        </body>
+      </body>
     </html>
   );
 }
