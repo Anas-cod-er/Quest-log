@@ -1,12 +1,17 @@
-import { Geist_Mono, Poppins } from "next/font/google";
+import localFont from "next/font/local";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import QueryClientProviderClient from "../../provider/query-client-provider";
 import { Toaster } from "sonner";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const eduQldHand = localFont({
+  src: [
+    { path: "./fonts/edu-qld-hand-400.ttf", weight: "400" },
+    { path: "./fonts/edu-qld-hand-500.ttf", weight: "500" },
+    { path: "./fonts/edu-qld-hand-600.ttf", weight: "600" },
+    { path: "./fonts/edu-qld-hand-700.ttf", weight: "700" },
+  ],
+  variable: "--font-edu-qld-hand",
 });
 
 const geistMono = Geist_Mono({
@@ -23,7 +28,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${eduQldHand.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
