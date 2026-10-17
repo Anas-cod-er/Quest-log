@@ -1,11 +1,9 @@
-import { Button } from "@/components/ui/button";
 import { TodoForm } from "@/components/ui/Todo-form";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { connectDB } from "@/lib/db";
 import { CheckCircle } from "lucide-react";
+import Todolist from "@/components/ui/Todo-list";
 
-export default async function Home() {
-  await connectDB();
+export default function Home() {
 
   return (
     <div className="flex min-h-screen bg-slate-50 dark:bg-zinc-950 p-6 sm:p-12 md:p-24">
@@ -28,6 +26,7 @@ export default async function Home() {
         </header>
         <section className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
           <TodoForm />
+          <Todolist />
         </section>
         <footer className="pt-8 text-center border-t border-slate-200 dark:border-zinc-800">
           <p className="text-sm text-slate-400 dark:text-zinc-500">
